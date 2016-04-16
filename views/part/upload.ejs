@@ -1,0 +1,18 @@
+<form id="form_upload" method="post" action="//up.qbox.me" enctype="multipart/form-data" target="">
+    <input id="token" type="hidden" name="token" class="ipt" value="<%= token %>">
+    <input name="key" type="hidden" class="ipt" value="<%= key %>">
+    <input name="file" class="ipt" type="file" onchange="onChange()"/>
+</form>
+<script>
+onChange = function(){
+	window.parent.document.getElementsByName("url")[0].value = "<%=pefix%><%= key%>";
+	document.getElementById("form_upload").submit()
+}
+/*document.getElementById("file_input").change(function() {
+    var filename = $(this).val();
+    var filename_pos = filename.lastIndexOf("\\") + 1; //从文件路径中获取文件名的起始位置
+    filename = filename.substring(filename_pos); //文件名
+    var extension = filename.split(".")[1].toLowerCase(); //获取文件扩展名
+    onChange();
+});*/
+</script>

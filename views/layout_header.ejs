@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= package.title %>
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" type="image/png" href="/img/favicon_24.png">
+    <link rel="apple-touch-icon" type="image/png" href="/img/logo_512.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no minimal-ui">
+    <link href="//cdn.muicss.com/mui-0.1.21/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/style/console.css">
+    <link rel="stylesheet" type="text/css" href="/style/markdown.css">
+    <script src="//cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+    <script src="//cdn.muicss.com/mui-0.1.21/js/mui.min.js"></script>
+    <script src="/javascripts/AV.push.js"></script>
+    <script type="text/javascript">
+	    var User = <%-JSON.stringify(AV.User.current())%>;
+	    var appId = '<%=AV.applicationId%>';
+	    var appKey = '<%=AV.applicationKey%>';
+	    var masterKey = '<%=AV.masterKey%>';
+    </script>
+</head>
+
+<body>
+	<div id ="toast"></div>
+	<div class="mui-container">
+		<div class="header-bar">
+			<a href="/" title="" class="appbar-brand"><%= package.title %> <small class="mui-hidden-xs"><%= package.version %></small></a>
+			<ul>
+			<% if (typeof AV.User.current() === "undefined"||!AV.User.current()) { %>
+				<li><i class="fa fa-sign-in"></i> <a href="../login">登录</a></li>
+				<li><a href="../register">注册</a></li>
+			<% }else{ %>
+				<div class="mui-dropdown">
+				<button class="mui-btn mui-btn-primary" data-mui-toggle="dropdown">
+				<i class="fa fa-user"></i> <%=AV.User.current().get('username')%>
+				<span class="mui-caret"></span>
+				</button>
+					<ul class="mui-dropdown-menu mui-dropdown-menu-right">
+						<li><a href="../console">管理中心</a></li>
+						<li><a href="../logout">登出</a></li>
+					</ul>
+				</div>
+			<%}%>
+			</ul>
+		</div>
+		<% if (typeof html_header != "undefined") { %>
+			<%- html_header %>
+		<% }; %>
+		<% if (typeof cb != "undefined") { %>
+			<p class="mui-panel mui-btn-<%= cb.level||"danger" %>">
+				<%= cb %>
+			</p>
+		<% }; %>
+		<div class="mui-divider" style="margin: 10px 0;"></div>

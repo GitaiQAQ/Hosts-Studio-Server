@@ -1,0 +1,12 @@
+<% include layout_header %>
+
+            <div class="mui-panel">
+                <h1 style="text-align:center;margin-top:50px"><span style="font-size:84px;"><%= status %></span></h1>
+                <h3 style="text-align:center;"><%= message %></h3>
+                <p style="text-align:center;margin-bottom:50px">Sorry an error has occurred, please try refreshing the page or <br /><br />navigate back to <a href="/">Home</a>
+                </p>
+                </div>
+                <% if (typeof error != "undefined") { %>
+                  <pre class="mui-panel"><%=error.stack%></pre>
+                <% }; %>
+<% include layout_footer %>

@@ -1,0 +1,20 @@
+<% include ../layout_header %>
+<div class="mui-row">
+  <div class="mui-col-md-4"></div>
+  <div class="mui-col-md-4">
+  	<div class="mui-panel">
+		<form method="post" action="/login">
+		  <legend>登录</legend>
+		  <div class="mui-form-group">
+		    <input type="text" name="username" class="mui-form-control" placeholder="用户名">
+		  </div>
+		  <div class="mui-form-group">
+		    <input type="password" name="password" class="mui-form-control" placeholder="密码">
+		  </div>
+		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised">登录</button>
+		</form>
+	</div>
+  </div>
+  <div class="mui-col-md-4"></div>
+</div>
+<% include ../layout_footer %>

@@ -1,0 +1,55 @@
+<% include layout_header %>
+<div class="mui-row">
+	<div class="mui-col-xs-12 mui-col-md-3">
+		<div class="mui-panel" onclick="location.href='/users/<%= author.objectId %>'" style="cursor: pointer;">
+			<div style="text-align:center;">
+		            	<div >
+			    		<img src="//cdn.v2ex.com/gravatar/<%=encode.md5(author.email)||null%>?size=256&d=retro&f=y" onerror="javascript:this.src='7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-avatar">
+			    	</div>
+		    		<h3><%=author.username%></h3>
+		    		<p><%=author.email%></p>
+	         	</div>
+		</div>
+
+		<% if (typeof fork != "undefined") {%>
+		<legend><i class="fa fa-link"></i> Fork from</legend>
+		<div class="mui-panel project-item" onclick="location.href='/hosts/<%= fork.objectId %>'">
+			<img src="//cdn.v2ex.com/gravatar/<%= fork.objectId||null%>?size=256&d=identicon&f=y" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-cover">
+			<h5><%= fork.title %></h5>
+		</div>
+		<% } %>
+	</div>
+	<div class="mui-col-xs-12 mui-col-md-9">
+		<div class="mui-panel">
+			<legend class="mui-text-title mui-text-black"><%= title  %>
+				<small>
+					<%= moment(new Date(updatedAt)).format('MM-DD') %>/<%= moment(new Date(createdAt)).format('MM-DD')%>
+				</small>
+			</legend>
+		</div>
+		<div class="mui-panel markdown-body">
+			<p class="singleLine"><a href="<%= url  %>" ><%= url  %></a></p>
+			<hr/>
+			<%- descriptionHTML %>
+		</div>
+		<div class="mui-panel">
+			<div id="SOHUCS" sid="<%= objectId  %>"></div> 
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript"> 
+if (location.origin.startsWith("https://")) {
+	location.href = "http://" + location.host + location.pathname;
+};
+(function(){ 
+var appid = 'cyrQaBDyF'; 
+var conf = 'prod_bd38d29c447e4b69891ba81895f3eaf0'; 
+if (window.screen.width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+} else { 
+var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+} 
+})(); 
+</script>
+<% include layout_footer %>

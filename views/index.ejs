@@ -1,0 +1,67 @@
+<% include layout_header %>
+<div class="mui-row">
+	<div class="mui-col-xs-12 mui-col-md-9">
+		<div class="mui-row">
+			<% for (var hosts of pubHosts) {  %>
+				<div name="<%= hosts.objectId %>" class="mui-col-xs-6 mui-col-md-3 ">
+					<div class="mui-panel project-item" onclick="location.href='/hosts/<%= hosts.objectId %>'">
+						<img src="//cdn.v2ex.com/gravatar/<%=(hosts.fork?hosts.fork.objectId:hosts.objectId)||null%>?size=256&d=identicon&f=y" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-cover">
+						<h5 class="singleLine"><%= hosts.title %></h5>
+						<% if (hosts.author) { %>
+							<h6 class="singleLine"><a href="/users/<%= hosts.author.objectId%>"><%= hosts.author.username %></a></h6>
+						<% }else{ %>
+							<h6 class="singleLine">None</h6>
+						<% };%>
+					</div>
+				</div>
+			<% };  %>
+		</div>
+	</div>
+	<div class="mui-col-xs-12 mui-col-md-3">
+		<div class="mui-panel">
+			<% if(AV.User.current()){  %>
+				<div style="text-align:center;">
+					<div >
+						<img src="//cdn.v2ex.com/gravatar/<%=encode.md5(AV.User.current().get('email'))||null%>?size=256&d=retro&f=y" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-avatar">
+					</div>
+					<h3><%=AV.User.current().get('username')%></h3>
+					<h4><%=AV.User.current().get('email')%></h4>
+				</div>
+			<% } else { %>
+				<ul class="mui-tabs" style="display: inline-block">
+					<li class="mui-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1">登录</a></li>
+					<li><a data-mui-toggle="tab" data-mui-controls="pane-default-2">注册</a></li>
+				</ul>
+				<div class="mui-divider"></div>
+				<div class="mui-tab-content">
+					<div class="mui-tab-pane mui-active" id="pane-default-1">
+						<form method="post" action="/login">
+							<div class="mui-form-group">
+								<input type="text" name="username" class="mui-form-control" placeholder="用户名">
+							</div>
+							<div class="mui-form-group">
+								<input type="password" name="password" class="mui-form-control" placeholder="密码">
+							</div>
+							<button type="submit" class="mui-btn mui-btn-default mui-btn-raised">登录</button>
+						</form>
+					</div>
+					<div class="mui-tab-pane" id="pane-default-2">
+						<form method="post" action="/register">
+							<div class="mui-form-group">
+								<input type="email" name="email" class="mui-form-control" placeholder="Email">
+							</div>
+							<div class="mui-form-group">
+								<input type="text" name="username" class="mui-form-control" placeholder="用户名">
+							</div>
+							<div class="mui-form-group">
+								<input type="password" name="password" class="mui-form-control" placeholder="密码">
+							</div>
+							<button type="submit" class="mui-btn mui-btn-default mui-btn-raised">注册</button>
+						</form>
+					</div>
+				</div>
+			<% } %>
+		</div>
+	</div>
+</div>
+<% include layout_footer %>

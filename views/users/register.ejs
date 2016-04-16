@@ -1,0 +1,23 @@
+<% include ../layout_header %>
+<div class="mui-row">
+  <div class="mui-col-md-4"></div>
+  <div class="mui-col-md-4">
+  	<div class="mui-panel">
+		<form method="post" action="/register">
+		  <legend>新用户注册</legend>
+		  <div class="mui-form-group">
+		    <input type="email" name="email" class="mui-form-control" placeholder="Email">
+		  </div>
+		  <div class="mui-form-group">
+		    <input type="text" name="username" class="mui-form-control" placeholder="用户名">
+		  </div>
+		  <div class="mui-form-group">
+		    <input type="password" name="password" class="mui-form-control" placeholder="密码">
+		  </div>
+		  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised">注册</button>
+		</form>
+	</div>
+  </div>
+  <div class="mui-col-md-4"></div>
+</div>
+<% include ../layout_footer %>

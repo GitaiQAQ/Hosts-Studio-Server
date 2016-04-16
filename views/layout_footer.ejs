@@ -1,0 +1,39 @@
+		<div class="footer-bar">
+			<p>除非另有声明，本网站采用知识共享“<a href="//zh.wikipedia.org/wiki/%E5%89%B5%E4%BD%9C%E5%85%B1%E7%94%A8%E6%8E%88%E6%AC%8A%E6%A2%9D%E6%AC%BE">知识共享许可协议(BY-SA)</a>”许可协议授权。</p>
+			<ul>
+				<li><a href="/">首页</a></li>
+				<li><a href="/publish">客户端</a></li>
+				<li><a href="/console">控制台</a></li>
+				<li><a href="/hosts/55dd3c2760b2733393157dc7">开发计划</a></li>
+				<li><a href="/help">帮助&反馈</a></li>
+			</ul>
+			<br/>
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1256182234'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1256182234%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+			<p>© 2015 <a href="mailto:<%= package.author.email %>?subject=feedback" "email me"><%= package.title %></a>.</p>
+	    </div>
+    </div>
+    <script type="text/javascript">
+	function showLog(e) {
+	    var t = e.msg ? e.msg : e.message ? e.message : e.alert ? e.alert : e;
+	    t = (e.username ? e.username + ":" : "") + t;
+	    if (t === "undefined") {
+	        t = e
+	    }
+	    var n = t.match("@" + User.username);
+	    if (n) {
+	        e.level = "danger"
+	    }
+	    var o = document.getElementById("toast");
+	    var a = $('<div class="mui-panel mui-panel mui-btn-' + (e.level ? e.level : "primary") + '" data-username="' + (e.username ? e.username : "") + '">' + t + "</div>");
+	    a.appendTo(o);
+	    setTimeout(_rm(a), 3e3)
+	}
+
+	function _rm(e) {
+	    return function() {
+	        $(e).remove()
+	    }
+	}
+	</script>
+  </body>
+</html>

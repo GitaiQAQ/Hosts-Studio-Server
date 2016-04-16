@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title><%= package.title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no minimal-ui">
+    <link href="//cdn.muicss.com/mui-0.1.21/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/style/console.css">
+</head>
+
+<body>
+    <div id ="toast">
+        <% if (typeof cb != "undefined") { %>
+            <div class="mui-panel mui-btn-<%= cb.level||"danger" %>">
+                <%= cb %>
+            </div>
+        <% }; %>
+        <% notices.forEach(function(notice) { %>
+            <div class="mui-panel mui-btn-<%= notice.level %>">
+                <%= notice.msg %>
+            </div>
+        <% }); %>
+    </div>
+    <div class="mui-container">
+        <div class="header-bar">
+            <a href="/" title="" class="appbar-brand"><%= package.title %> <small><%= package.version %></small></a>
+            <ul>
+                <li>版本：<%=appinfo.versionName%> (build <%=appinfo.versionCode%>)</li><li>大小：<%=appinfo.size%></li>
+            </ul>
+        </div>
+        <% if (typeof html_header != "undefined") { %>
+            <%- html_header %>
+        <% }; %>
+        <!--div class="msg_div" align="right">
+            <div id ="msg">
+
+            </div>
+            <div id ="msg_send" class="mui-panel mui-form-inline" style="margin:5px;padding: 10px;">
+                <i class="fa fa-commenting-o fa-2x"></i>
+                <input id="talk_input" type="text" class="mui-form-control" required>
+            </div>
+        </div-->
+        <div class="mui-divider" style="margin: 10px 0;"></div>
+
+        <div class="mui-panel">
+        	<div style="text-align:center;margin: 30px 0;">
+        		<div >
+        			<img src="<%= appinfo.icon %>" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" style="width: 120px;height: 120px;border-radius: 22%;opacity: .8;border: 1px solid #999;">
+        		</div>
+        		<a href="http://ac-sgyqr6wb.clouddn.com/<%= appinfo.id %>.apk" class="btn-u btn-u-lg">点击安装</a>
+        		<hr class="devider devider-dotted">
+        		<p>或者用手机扫描下面的二维码安装 </p><br>
+        		<div >
+        			<img src="http://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http%3A%2F%2Fac-sgyqr6wb.clouddn.com%2F<%= appinfo.id %>.apk" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" style="width: 120px;height: 120px;border: 1px solid #999;">
+        		</div>
+        	</div>
+        </div>
+
+        <div class="mui-panel">
+        	<legend>截图</legend>
+        	<div style="overflow-x: scroll;overflow-y: hidden;margin: -15px;margin-top: 0;">
+	        	<div style="height: 266px;width: 920px;">
+	        		<% for (var shots of appinfo.shot) {  %>
+	        			<img src="<%= shots %>" width="150" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';">
+	        		<% };  %>
+	        	</div>
+        	</div>
+        </div>
+<% include layout_footer %>

@@ -1,0 +1,60 @@
+<% include layout_header %>
+<div class="mui-row">
+  <div class="mui-col-xs-12 mui-col-md-9">
+  	<% for (var feedback of feedbacks) {  %>
+  		<div class="mui-panel markdown-body">
+			<legend class="mui-text-title mui-text-black">
+				<%= feedback.title %>
+				<small>
+					<%= moment(new Date(feedback.updatedAt)).format('MM-DD') %>/<%= moment(new Date(feedback.createdAt)).format('MM-DD')%>
+				</small>
+			</legend>
+			<%- feedback.desHtml %>
+			<hr/>
+			<%- feedback.answerHtml %>
+			<!--hr/>
+			<div id="SOHUCS" sid="<%= feedback.objectId  %>"></div--> 
+		</div>
+  	<% };  %>
+  </div>
+  <div class="mui-col-xs-12 mui-col-md-3">
+  	<div class="mui-panel">
+  		<% if(AV.User.current()){  %>
+			<form method="post" action="/help">
+			  <legend>反馈</legend>
+			  	<div class="mui-form-group">
+					<input type="text" name="title" class="mui-form-control" placeholder="写下你的问题" required>
+				</div>
+			  	<% if(type){  %>
+			  		<div class="mui-form-group" style="display:none">
+			    		<input type="hidden" name="type" class="mui-form-control" placeholder="Type" value="<%= type %>">
+			    	</div>
+			    <% } else { %>
+			    	<div class="mui-form-group">
+			    		<input type="text" name="type" class="mui-form-control" placeholder="Type" value="Type">
+			    	</div>
+			    <% } %>
+			  <textarea name="des" class="mui-form-control" placeholder="问题背景、条件等详细信息"></textarea>
+			  <button type="submit" class="mui-btn mui-btn-default mui-btn-raised">Po</button>
+			</form>
+		<% } else { %>
+			Login
+		<% } %>
+	</div>
+  </div>
+</div>
+<!--script type="text/javascript"> 
+if (location.origin.startsWith("https://")) {
+	location.href = "http://" + location.host + location.pathname;
+};
+(function(){ 
+var appid = 'cyrQaBDyF'; 
+var conf = 'prod_bd38d29c447e4b69891ba81895f3eaf0'; 
+if (window.screen.width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); 
+} else { 
+var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("//changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); 
+} 
+})(); 
+</script-->
+<% include layout_footer %>

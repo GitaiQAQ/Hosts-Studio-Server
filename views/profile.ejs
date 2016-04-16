@@ -1,0 +1,36 @@
+<% include layout_header %>
+<div class="mui-row">
+    <div class="mui-col-xs-12 mui-col-md-3">
+        <div class="mui-panel">
+            <div style="text-align:center;">
+                <div>
+                    <img src="//cdn.v2ex.com/gravatar/<%=encode.md5(User.email)||null%>?size=256&d=retro&f=y" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-avatar">
+                </div>
+                <h3><%=User.username%></h3>
+                <h4><%=User.email%></h4>
+            </div>
+        </div>
+    </div>
+    <div class="mui-col-xs-12 mui-col-md-9">
+        <ul class="mui-tabs" style="display: inline-block">
+          <li class="mui-active"><a data-mui-toggle="tab" data-mui-controls="pane-default-1"><i class="fa fa-share-alt"></i> TA公开的项目</a></li>
+        </ul>
+        <!--button class="mui-btn mui-btn-primary" onclick="activateModal_New()"><i class="fa fa-wechat"></i></button-->
+        <div class="mui-divider"></div>
+        <div class="mui-tab-content">
+          <div class="mui-tab-pane mui-active" id="pane-default-1">
+            <div class="mui-row">
+                <% for (var hosts of Hosts) {  %>
+                    <div name="<%= hosts.objectId %>" class="mui-col-xs-6 mui-col-md-3">
+                        <div class="mui-panel project-item" onclick="location.href='/hosts/<%= hosts.objectId %>'">
+                            <img src="//cdn.v2ex.com/gravatar/<%=(hosts.fork?hosts.fork.objectId:hosts.objectId)||null%>?size=256&d=identicon&f=y" onerror="javascript:this.src='//7jpp3m.com1.z0.glb.clouddn.com/hosts/web/img/none.svg';" class="img-cover">
+                            <h5><a href="/api/hosts/<%= hosts.objectId %>/down" title="<%= hosts.title %>"><%-hosts.lock?'<i class="fa fa-lock"></i> ':""%><%-hosts.fork?'<i class="fa fa-code-fork"></i> ':""%><%= hosts.title%></a></h5>
+                        </div>
+                    </div>
+                <% };  %>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<% include layout_footer %>
